@@ -3,11 +3,11 @@ metadata:
   name: camel-quarkus-examples
 
 projects:
-  - name: timer-log
+  - name: camel-quarkus-examples
     git:
       remotes: 
         origin: https://github.com/apache/camel-quarkus-examples
-
+        
 components:
   - name: java
     container:
