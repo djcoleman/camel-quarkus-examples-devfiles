@@ -12,6 +12,10 @@ components:
   - name: java
     container:
       image: quay.io/devfile/universal-developer-image:ubi8-latest
+      endpoints:
+        - exposure: public
+          name: web
+          targetPort: 8080
       
 commands:
   - id: jdk-17
@@ -20,11 +24,18 @@ commands:
       component: java
       group:
         kind: build
-  - id: run-example
+  - id: run-timer-log
     exec:
       commandLine: mvn quarkus:dev
       component: java
       workingDir: ${PROJECT_SOURCE}/timer-log
       group:
-        isDefault: true
         kind: run
+  - id: run-rest-json
+    exec:
+      commandLine: mvn quarkus:dev
+      component: java
+      workingDir: ${PROJECT_SOURCE}/rest-json
+      group:
+        kind: run
+  
