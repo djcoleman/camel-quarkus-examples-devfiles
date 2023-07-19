@@ -1,0 +1,30 @@
+schemaVersion: 2.2.1
+metadata:
+  name: camel-quarkus-examples
+
+projects:
+  - name: timer-log
+    git:
+      remotes: 
+        origin: https://github.com/apache/camel-quarkus-examples
+
+components:
+  - name: java
+    container:
+      image: quay.io/devfile/universal-developer-image:ubi8-latest
+      
+commands:
+  - id: jdk-17
+    exec:
+      commandLine: bash -c 'source ~/.bashrc && sdk default java 17.0.3-tem'
+      component: java
+      group:
+        kind: build
+  - id: run-example
+    exec:
+      commandLine: mvn quarkus:dev
+      component: java
+      workingDir: ${PROJECT_SOURCE}/timer-log
+      group:
+        isDefault: true
+        kind: run
